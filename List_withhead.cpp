@@ -15,6 +15,7 @@ public:
     bool print_list();
     bool is_empty();
     bool get_size();
+    bool reverse();
 };
 
 Node::Node()
@@ -106,12 +107,30 @@ bool myList::get_size()
     cout<<"size is "<<size<<endl;
     return true;
 }
+bool myList::reverse()
+{
+	Node *p1 = NULL;
+	Node *p2 = head;
+    Node *p3 = p2;
+        
+    while(p2)
+	{
+    	p3 = p2->next;
+        p2->next = p1;
+        p1 = p2;
+        p2 = p3;            
+    }
+    head =  p1;
+ } 
 int main()
 {
     myList a;
-    cout<<a.is_empty()<<endl;
-    cout<<a.insert_pos(0,1)<<endl;
-    cout<<a.insert_pos(1,2)<<endl;
-    cout<<a.print_list()<<endl;
+    a.is_empty();
+    a.insert_pos(0,1);
+    
+    a.insert_pos(1,2);
+    a.print_list();
+    a.reverse();
+	a.print_list();
     return 0;
 }
